@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotating Star Animation</title>
+    <style>
+        body {
+            background: #0f172a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .star {
+            width: 0;
+            height: 0;
+            position: relative;
+        }
+
+        .star::before, .star::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: #facc15;
+            clip-path: polygon(
+                50% 0%, 61% 35%, 98% 35%, 
+                68% 57%, 79% 91%, 50% 70%, 
+                21% 91%, 32% 57%, 2% 35%, 39% 35%
+            );
+        }
+    </style>
+</head>
+<body>
+
+<div class="star" id="star"></div>
+
+<script>
+    const star = document.getElementById('star');
+    let angle = 0;
+
+    function rotate() {
+        angle += 1;  // Rotate by 1 degree each frame
+        star.style.transform = `rotate(${angle}deg)`;
+        requestAnimationFrame(rotate);
+    }
+
+    rotate();
+</script>
+
+</body>
+</html>
